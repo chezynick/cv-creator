@@ -7,18 +7,23 @@
   margin: 0;
   padding: 0;
 }
-button {
+.editButton {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  border: solid rgb(226, 176, 12) 2px;
-  float: right;
-  margin-right: 30px;
+  border: solid rgb(226, 133, 12) 2px;
+  right:30px;
+  position: absolute;
+  
+}
+.workPlace {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding:5px;
 }
 .general {
-  background-color: darkolivegreen;
   width: 100%;
-  padding-bottom: 50px;
 }
 .schoolList {
   display: flex;
@@ -27,12 +32,12 @@ button {
   justify-content: space-between;
 }
 .education {
-  background-color: antiquewhite;
+
   padding: 50px 0px 50px 0px;
   width: 100%;
 }
 .school {
-  background-color: antiquewhite;
+
   padding: 50px 0px 50px 0px;
   width: 100%;
   display: flex;
@@ -41,12 +46,25 @@ button {
   align-items: center;
 }
 .work {
-  background-color: burlywood;
+
   padding: 50px 0px 50px 0px;
   width: 100%;
 }
 .other {
-  background-color: cornflowerblue;
   padding: 50px 0px 50px 0px;
   width: 100%;
+
+}
+.editOther {
+  padding:30px;
+  border:dotted black 1px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
+.schoolGrid {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+
 }

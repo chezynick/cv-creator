@@ -4,7 +4,7 @@ import './App.css';
 
 import Work from './Work'
 import Education from './Education'
-import Other from './Other'
+import Other from './other'
 
 import General from './General';
 
@@ -12,8 +12,16 @@ import General from './General';
 
 
 class App extends React.Component {
-
-  
+constructor(){
+  super()
+  this.state = {
+    
+  }
+  this.clickHandler = this.clickHandler.bind(this)
+}
+  clickHandler (){
+    console.log('remove edit buttons')
+  }
 render() {
   return (
     <div className="App">
@@ -25,7 +33,7 @@ render() {
      
       <Other />
      
-      
+      <div onClick={this.clickHandler}>Remove Edit Buttons</div>
     </div>
   );
 }
