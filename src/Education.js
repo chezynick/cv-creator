@@ -5,7 +5,7 @@ class Education extends React.Component {
     super();
     this.state = {
       showMe: false,
-      newWork: [],
+
       name: [],
       from: [],
       to: [],
@@ -21,6 +21,7 @@ class Education extends React.Component {
     this.toAdd = this.toAdd.bind(this);
     this.dutyAdd = this.dutyAdd.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+    this.deleteHandler = this.deleteHandler.bind(this);
   }
   //edit and submit handlers
   handleEdit(e) {
@@ -51,6 +52,16 @@ class Education extends React.Component {
   dutyAdd(e) {
     this.setState({ duties: e.target.value });
   }
+    //delete handler
+    deleteHandler(e) {
+      this.setState((state) => {
+        const work = state.work.filter((name) => name[0] !== e.target.innerText);
+        console.log(work);
+        return {
+          work,
+        };
+      });
+    }
 
   render() {
     if (this.state.showMe) {
@@ -64,7 +75,7 @@ class Education extends React.Component {
             <h4>Qualifications</h4>
             {this.state.work.map((item) =>
               item.map((inner) => {
-                return <div >{inner}</div>;
+                return <div onClick={this.deleteHandler}>{inner}</div>;
               })
             )}
             
@@ -78,15 +89,17 @@ class Education extends React.Component {
             <input type="text" onChange={this.toAdd} />
             <label>Qualifications :</label>
             <input type="text" onChange={this.dutyAdd} />
-            <button type="submit" onClick={this.submitHandler}>
-              Add
+            <p>Click the name of a Learning Providor to Delete it</p>
+            <button type="submit" class='submit' onClick={this.submitHandler}>
+              Add/Close Form
             </button>
+            
           </form>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className='other'>
           <h3>Education</h3>
           <div className="schoolGrid">
             <h4>Learning Provider</h4>

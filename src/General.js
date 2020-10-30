@@ -64,7 +64,7 @@ class General extends React.Component {
           </h1>
           <h3>Email : {this.state.email}</h3>
           <h3>Phone : {this.state.phone}</h3>
-          <form className="editOther">
+          <form className="workForm">
             <label value="First Name:">First Name:</label>
             <input
               type="text"
@@ -89,7 +89,8 @@ class General extends React.Component {
               Value={this.state.phone}
               onChange={this.phoneChange}
             />
-            <button type="submit" onClick={this.submitHandler}>
+            <div></div>
+            <button type="submit" class='submit' onClick={this.submitHandler}>
               Make Changes
             </button>
           </form>
@@ -97,7 +98,7 @@ class General extends React.Component {
       );
     } else {
       return (
-        <div className="general">
+        <div className="other">
           <h1>
             {this.state.firstName} {this.state.lastName}
           </h1>

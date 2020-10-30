@@ -57,7 +57,7 @@ class Other extends React.Component {
         <div> Skilz: {this.state.skills}</div>
         <div> Achievements: {this.state.achievements}</div>
        
-        <form className="editOther">
+        <form className="workForm">
           <label value="Hobbies:">Hobbies:</label>
           <input
             type="text"
@@ -76,7 +76,8 @@ class Other extends React.Component {
             Value={this.state.achievements}
             onChange={this.achieveChange}
           />
-          <button type="submit" onClick={this.submitHandler}>
+          <div></div>
+          <button type="submit" class='submit' onClick={this.submitHandler}>
             Make Changes
           </button>
         </form>
