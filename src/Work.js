@@ -11,8 +11,8 @@ class Work extends React.Component {
       to: [],
       duties: [],
       work: [
-        ["heaven", "1984", "1986", "stuff"],
-        ["hell", "1988", "1992", "things"],
+        ["Barrats", "1995", "2004", "getting off with Anne in the stock room"],
+        ["STA Travel", "2006", "2020", "playing Fifa and going on holidays"],
       ],
     };
     this.handleEdit = this.handleEdit.bind(this);
