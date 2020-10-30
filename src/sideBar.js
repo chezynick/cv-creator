@@ -6,7 +6,7 @@ class SideBar extends React.Component {
     return (
             <div>
         <img src="https://www.gdnonline.com/gdnimages/20161122/201611221138141.JPG"/>
-        <div class= 'filler'></div>
+        <div className= 'filler'></div>
         </div>
     )
   }

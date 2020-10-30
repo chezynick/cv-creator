@@ -1,8 +1,8 @@
 import React from "react";
 
 class General extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       firstNameEdit: ["Nick"],
       lastNameEdit: ["Chesterton"],
@@ -21,6 +21,7 @@ class General extends React.Component {
     this.phoneChange = this.phoneChange.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
   }
+
   //edit button and submit button change
   handleEdit(e) {
     e.preventDefault();
@@ -90,26 +91,38 @@ class General extends React.Component {
               onChange={this.phoneChange}
             />
             <div></div>
-            <button type="submit" class='submit' onClick={this.submitHandler}>
+            <button type="submit" class="submit" onClick={this.submitHandler}>
               Make Changes
             </button>
           </form>
         </div>
       );
     } else {
-      return (
-        <div className="other">
-          <h1>
-            {this.state.firstName} {this.state.lastName}
-          </h1>
-          <button className="editButton" onClick={this.handleEdit}>
-            Edit
-          </button>
-          <h3>Email : {this.state.email}</h3>
-          <h3>Phone : {this.state.phone}</h3>
-          
-        </div>
-      );
+      if (this.props.edit) {
+        return (
+          <div className="other">
+            <h1>
+              {this.state.firstName} {this.state.lastName}
+            </h1>
+            <button className="editButton" onClick={this.handleEdit}>
+              Edit
+            </button>
+            <h3>Email : {this.state.email}</h3>
+            <h3>Phone : {this.state.phone}</h3>
+          </div>
+        );
+      } else {
+        return (
+          <div className="other">
+            <h1>
+              {this.state.firstName} {this.state.lastName}
+            </h1>
+
+            <h3>Email : {this.state.email}</h3>
+            <h3>Phone : {this.state.phone}</h3>
+          </div>
+        );
+      }
     }
   }
 }

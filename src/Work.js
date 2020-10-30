@@ -1,8 +1,8 @@
 import React from "react";
 
 class Work extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showMe: false,
 
@@ -99,6 +99,7 @@ class Work extends React.Component {
         </div>
       );
     } else {
+      if(this.props.edit){
       return (
         <div className='other'>
           <h3>Work Experience</h3>
@@ -118,6 +119,25 @@ class Work extends React.Component {
           </div>
         </div>
       );
+            } else {
+              return (
+                <div className='other'>
+                  <h3>Work Experience</h3>
+                  <div className="schoolGrid">
+                    <h4>Employer</h4>
+                    <h4>From</h4>
+                    <h4>To</h4>
+                    <h4>Duties</h4>
+                    {this.state.work.map((item) =>
+                      item.map((inner) => {
+                        return <div>{inner}</div>;
+                      })
+                    )}
+
+                  </div>
+                </div>
+              );
+            }
     }
   }
 }

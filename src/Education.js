@@ -1,8 +1,8 @@
 import React from "react";
 
 class Education extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showMe: false,
 
@@ -32,11 +32,14 @@ class Education extends React.Component {
     e.preventDefault();
     this.setState({ showMe: false });
     this.setState((state) => {
-      const work = [...state.work,[state.name, state.from, state.to, state.duties]];
-        return {
-          work,
-        };
-      });
+      const work = [
+        ...state.work,
+        [state.name, state.from, state.to, state.duties],
+      ];
+      return {
+        work,
+      };
+    });
   }
 
   //new work item handlers
@@ -52,16 +55,16 @@ class Education extends React.Component {
   dutyAdd(e) {
     this.setState({ duties: e.target.value });
   }
-    //delete handler
-    deleteHandler(e) {
-      this.setState((state) => {
-        const work = state.work.filter((name) => name[0] !== e.target.innerText);
-        console.log(work);
-        return {
-          work,
-        };
-      });
-    }
+  //delete handler
+  deleteHandler(e) {
+    this.setState((state) => {
+      const work = state.work.filter((name) => name[0] !== e.target.innerText);
+      console.log(work);
+      return {
+        work,
+      };
+    });
+  }
 
   render() {
     if (this.state.showMe) {
@@ -78,7 +81,6 @@ class Education extends React.Component {
                 return <div onClick={this.deleteHandler}>{inner}</div>;
               })
             )}
-            
           </div>
           <form className="workForm">
             <label>Learning Provider :</label>
@@ -90,33 +92,51 @@ class Education extends React.Component {
             <label>Qualifications :</label>
             <input type="text" onChange={this.dutyAdd} />
             <p>Click the name of a Learning Providor to Delete it</p>
-            <button type="submit" class='submit' onClick={this.submitHandler}>
+            <button type="submit" class="submit" onClick={this.submitHandler}>
               Add/Close Form
             </button>
-            
           </form>
         </div>
       );
     } else {
-      return (
-        <div className='other'>
-          <h3>Education</h3>
-          <div className="schoolGrid">
-            <h4>Learning Provider</h4>
-            <h4>From</h4>
-            <h4>To</h4>
-            <h4>Qualifications</h4>
-            {this.state.work.map((item) =>
-              item.map((inner) => {
-                return <div>{inner}</div>;
-              })
-            )}
-            <button className="editButton" onClick={this.handleEdit}>
-              Edit
-            </button>
+      if (this.props.edit) {
+        return (
+          <div className="other">
+            <h3>Education</h3>
+            <div className="schoolGrid">
+              <h4>Learning Provider</h4>
+              <h4>From</h4>
+              <h4>To</h4>
+              <h4>Qualifications</h4>
+              {this.state.work.map((item) =>
+                item.map((inner) => {
+                  return <div>{inner}</div>;
+                })
+              )}
+              <button className="editButton" onClick={this.handleEdit}>
+                Edit
+              </button>
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="other">
+            <h3>Education</h3>
+            <div className="schoolGrid">
+              <h4>Learning Provider</h4>
+              <h4>From</h4>
+              <h4>To</h4>
+              <h4>Qualifications</h4>
+              {this.state.work.map((item) =>
+                item.map((inner) => {
+                  return <div>{inner}</div>;
+                })
+              )}
+            </div>
+          </div>
+        );
+      }
     }
   }
 }

@@ -52,51 +52,62 @@ class Other extends React.Component {
     if (this.state.showMe) {
       return (
         <div className="other">
-        <h3>Other...</h3>
-        <div> Hobbies: {this.state.hobbies}</div>
-        <div> Skilz: {this.state.skills}</div>
-        <div> Achievements: {this.state.achievements}</div>
-       
-        <form className="workForm">
-          <label value="Hobbies:">Hobbies:</label>
-          <input
-            type="text"
-            Value={this.state.hobbies}
-            onChange={this.hobbieChange}
-          />
-          <label value="skills:">Skills:</label>
-          <input
-            type="text"
-            Value={this.state.skills}
-            onChange={this.skillChange}
-          />
-          <label value="Achievements:">Achievements:</label>
-          <input
-            type="text"
-            Value={this.state.achievements}
-            onChange={this.achieveChange}
-          />
-          <div></div>
-          <button type="submit" class='submit' onClick={this.submitHandler}>
-            Make Changes
-          </button>
-        </form>
+          <h3>Other...</h3>
+          <div> Hobbies: {this.state.hobbies}</div>
+          <div> Skilz: {this.state.skills}</div>
+          <div> Achievements: {this.state.achievements}</div>
+
+          <form className="workForm">
+            <label value="Hobbies:">Hobbies:</label>
+            <input
+              type="text"
+              Value={this.state.hobbies}
+              onChange={this.hobbieChange}
+            />
+            <label value="skills:">Skills:</label>
+            <input
+              type="text"
+              Value={this.state.skills}
+              onChange={this.skillChange}
+            />
+            <label value="Achievements:">Achievements:</label>
+            <input
+              type="text"
+              Value={this.state.achievements}
+              onChange={this.achieveChange}
+            />
+            <div></div>
+            <button type="submit" class="submit" onClick={this.submitHandler}>
+              Make Changes
+            </button>
+          </form>
         </div>
       );
     } else {
-      return (
-        <div className="other">
-          <h3>Other...</h3>
-          <div> Hobbies: {this.state.hobbies}</div>
-          <button className="editButton" onClick={this.handleEdit}>
-            Edit
-          </button>
-          <div> Skilz: {this.state.skills}</div>
-          <div> Achievements: {this.state.achievements}</div>
-         
-         
-        </div>
-      );
+      if (this.props.edit) {
+        
+        return (
+          <div className="other">
+            <h3>Other...</h3>
+            <div> Hobbies: {this.state.hobbies}</div>
+            <button className="editButton" onClick={this.handleEdit}>
+              Edit
+            </button>
+            <div> Skilz: {this.state.skills}</div>
+            <div> Achievements: {this.state.achievements}</div>
+          </div>
+        );
+      } else {
+        return (
+          <div className="other">
+            <h3>Other...</h3>
+            <div> Hobbies: {this.state.hobbies}</div>
+
+            <div> Skilz: {this.state.skills}</div>
+            <div> Achievements: {this.state.achievements}</div>
+          </div>
+        );
+      }
     }
   }
 }

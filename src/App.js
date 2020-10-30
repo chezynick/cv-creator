@@ -5,34 +5,41 @@ import "./App.css";
 import Work from "./Work";
 import Education from "./Education";
 import Other from "./other";
-import SideBar from './sideBar'
+import SideBar from "./sideBar";
 import General from "./General";
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      editButtonView: true,
+    };
     this.clickHandler = this.clickHandler.bind(this);
   }
   clickHandler() {
-    console.log("remove edit buttons");
+    this.setState(prevState => ({
+      editButtonView: !prevState.editButtonView
+    }));
+  
   }
   render() {
     return (
       <div className="App">
-        <div className="sideBar"><SideBar /></div>
-        <div className="headerBar">
-          <General />
+        <div className="sideBar">
+          <SideBar />
         </div>
-       
+        <div className="headerBar">
+          <General edit={this.state.editButtonView} />
+        </div>
+
         <div className="container">
-          <Work />
+          <Work edit={this.state.editButtonView} />
 
-          <Education />
+          <Education edit={this.state.editButtonView} />
 
-          <Other />
+          <Other edit={this.state.editButtonView} />
 
-          <div onClick={this.clickHandler}>Remove Edit Buttons</div>
+          <div onClick={this.clickHandler}>Toggle Edit Buttons</div>
         </div>
       </div>
     );
