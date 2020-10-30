@@ -4,12 +4,12 @@ class Other extends React.Component {
   constructor() {
     super();
     this.state = {
-      hobbieEdit: ["football"],
+      hobbieEdit: ["Cycling, photography, gastronomy and wine making"],
       skillsEdit: ["can make a box out of Origami"],
-      achieveEdit: ["climbed Everest"],
-      hobbies: ["football"],
+      achieveEdit: ["climbed Everest (in Zwift)"],
+      hobbies: ["Cycling, photography, gastronomy and wine makingl"],
       skills: ["can make a box out of Origami"],
-      achievements: ["climbed Everest"],
+      achievements: ["climbed Everest (in Zwift)"],
       showMe: false,
     };
     this.handleEdit = this.handleEdit.bind(this);

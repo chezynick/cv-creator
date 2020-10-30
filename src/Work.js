@@ -32,18 +32,13 @@ class Work extends React.Component {
   submitHandler(e) {
     e.preventDefault();
     this.setState({ showMe: false });
-    this.setState((state) => {
-      const newWork = [state.name, state.from, state.to, state.duties];
-    this.setState((state) => {
-      const work = [...state.work, newWork];
-      return {
-        work,
-        newWork: "",
-      };
-      });
-    });
-  }
-
+      this.setState((state) => {
+        const work = [...state.work,[state.name, state.from, state.to, state.duties]];
+          return {
+            work,
+          };
+        });
+    }
   //new work item handlers
   nameAdd(e) {
     this.setState({ name: e.target.value });
@@ -80,10 +75,12 @@ class Work extends React.Component {
             <input type="text" onChange={this.nameAdd} />
             <label>From date :</label>
             <input type="text" onChange={this.fromAdd} />
+            
             <label>To date :</label>
             <input type="text" onChange={this.toAdd} />
             <label>Duties :</label>
             <input type="text" onChange={this.dutyAdd} />
+            
             <button type="submit" onClick={this.submitHandler}>
               Add
             </button>

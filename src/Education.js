@@ -11,10 +11,8 @@ class Education extends React.Component {
       to: [],
       duties: [],
       work: [
-        ["heaven", "1984", "1986", "stuff"],
-        ["hell", "1988", "1992", "things"],
-        ["thingy", "1992", "1998", "more stuff"],
-        ["watsit", "1998", "2020", "too much stuff"],
+        ["GlossopDale Comp", "1989", "1992", "GCSE's"],
+        ["GlossopDale Community College", "1992", "1994", "A-Levels"],
       ],
     };
     this.handleEdit = this.handleEdit.bind(this);
@@ -33,17 +31,11 @@ class Education extends React.Component {
     e.preventDefault();
     this.setState({ showMe: false });
     this.setState((state) => {
-      const newWork = [state.name, state.from, state.to, state.duties];
-      this.setState({name:''})
-    this.setState((state) => {
-      const work = [...state.work, newWork];
-      
-      return {
-        work,
-        newWork: "",
-      };
+      const work = [...state.work,[state.name, state.from, state.to, state.duties]];
+        return {
+          work,
+        };
       });
-    });
   }
 
   //new work item handlers
@@ -65,17 +57,17 @@ class Education extends React.Component {
       return (
         <div>
           <h3>Education</h3>
-          <div className='schoolGrid'>
-              <h4>Learning Provider</h4>
-              <h4>From</h4>
-              <h4>To</h4>
-              <h4>Qualifications</h4>
-          {this.state.work.map((item) => item.map(inner => {
-            return (
-            <div >{inner}</div>
+          <div className="schoolGrid">
+            <h4>Learning Provider</h4>
+            <h4>From</h4>
+            <h4>To</h4>
+            <h4>Qualifications</h4>
+            {this.state.work.map((item) =>
+              item.map((inner) => {
+                return <div >{inner}</div>;
+              })
             )}
-          )
-          )}
+            
           </div>
           <form className="workForm">
             <label>Learning Provider :</label>
@@ -96,25 +88,24 @@ class Education extends React.Component {
       return (
         <div>
           <h3>Education</h3>
-          <div className='schoolGrid'>
-              <h4>Learning Provider</h4>
-              <h4>From</h4>
-              <h4>To</h4>
-              <h4>Qualifications</h4>
-          {this.state.work.map((item) => item.map(inner => {
-            return (
-            <div >{inner}</div>
+          <div className="schoolGrid">
+            <h4>Learning Provider</h4>
+            <h4>From</h4>
+            <h4>To</h4>
+            <h4>Qualifications</h4>
+            {this.state.work.map((item) =>
+              item.map((inner) => {
+                return <div>{inner}</div>;
+              })
             )}
-          )
-          )}
-          <button className="editButton" onClick={this.handleEdit}>Edit</button>
-
+            <button className="editButton" onClick={this.handleEdit}>
+              Edit
+            </button>
+          </div>
         </div>
-        </div>
-        )
-            }
-          }
-        };
- 
+      );
+    }
+  }
+}
 
 export default Education;
