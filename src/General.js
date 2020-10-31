@@ -6,11 +6,11 @@ class General extends React.Component {
     this.state = {
       firstNameEdit: ["Nick"],
       lastNameEdit: ["Chesterton"],
-      emailEdit: ["Chezynickannie@yahoo.co.uk"],
+      emailEdit: ["Chmyemail@yahoo.co.uk"],
       phoneEdit: ["01457 853625"],
       firstName: ["Nick"],
       lastName: ["Chesterton"],
-      email: ["Chezynickannie@yahoo.co.uk"],
+      email: ["Chmyemail@yahoo.co.uk"],
       phone: ["01457 853625"],
       showMe: false,
     };
