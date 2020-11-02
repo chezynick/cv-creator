@@ -1,145 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Work extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showMe: false,
+const Work = ({ edit }) => {
+  const [showMe, setChange] = useState(false);
+  const [name, setName] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [duties, setDuties] = useState("");
+  const [work, setWork] = useState([
+    ["Barrats", "1995", "2004", "getting off with Anne in the stock room"],
+    ["STA Travel", "2006", "2020", "playing Fifa and going on holidays"],
+  ]);
 
-      name: [],
-      from: [],
-      to: [],
-      duties: [],
-      work: [
-        ["Barrats", "1995", "2004", "getting off with Anne in the stock room"],
-        ["STA Travel", "2006", "2020", "playing Fifa and going on holidays"],
-      ],
-    };
-    this.handleEdit = this.handleEdit.bind(this);
-    this.nameAdd = this.nameAdd.bind(this);
-    this.fromAdd = this.fromAdd.bind(this);
-    this.toAdd = this.toAdd.bind(this);
-    this.dutyAdd = this.dutyAdd.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
-    this.deleteHandler = this.deleteHandler.bind(this);
-  }
   //edit and submit handlers
-  handleEdit(e) {
+  const handleEdit = (e) => {
     e.preventDefault();
-    this.setState({ showMe: true });
+    setChange(true);
+  };
+  function submitHandler(e) {
+    e.preventDefault();
+    setChange(false);
+    setWork([...work, [name, from, to, duties]]);
   }
-  submitHandler(e) {
-    e.preventDefault();
-    this.setState({ showMe: false });
-    this.setState((state) => {
-      const work = [
-        ...state.work,
-        [state.name, state.from, state.to, state.duties],
-      ];
 
-      return {
-        work,
-      };
-    });
-  }
   //new work item handlers
-  nameAdd(e) {
-    this.setState({ name: e.target.value });
+  function nameAdd(e) {
+    setName(e.target.value);
   }
-  fromAdd(e) {
-    this.setState({ from: e.target.value });
-  }
-  toAdd(e) {
-    this.setState({ to: e.target.value });
-  }
-  dutyAdd(e) {
-    this.setState({ duties: e.target.value });
-  }
+  const fromAdd = (e) => {
+    setFrom(e.target.value);
+  };
+  const toAdd = (e) => {
+    setTo(e.target.value);
+  };
+  const dutyAdd = (e) => {
+    setDuties(e.target.value);
+  };
   //delete handler
-  deleteHandler(e) {
-    this.setState((state) => {
-      const work = state.work.filter((name) => name[0] !== e.target.innerText);
-      console.log(work);
-      return {
-        work,
-      };
-    });
-  }
-  render() {
-    if (this.state.showMe) {
-      return (
-        <div>
-          <h3>Work Experience</h3>
-          <div className="schoolGrid">
-            <h4>Employer</h4>
-            <h4>From</h4>
-            <h4>To</h4>
-            <h4>Duties</h4>
-            {this.state.work.map((item) =>
-              item.map((inner) => {
-                return <div onClick={this.deleteHandler}>{inner}</div>;
-              })
-            )}
-          </div>
-          <form className="workForm">
-            <label>Employer Name :</label>
-            <input type="text" onChange={this.nameAdd} />
-            <label>From date :</label>
-            <input type="text" onChange={this.fromAdd} />
+  const deleteHandler = (e) => {
+    setWork(work.filter((name) => name[0] !== e.target.innerText));
+  };
 
-            <label>To date :</label>
-            <input type="text" onChange={this.toAdd} />
-            <label>Duties :</label>
-            <input type="text" onChange={this.dutyAdd} />
-            <p>Click the name of an Employer to remove that line</p>
-            <button type="submit" class='submit'onClick={this.submitHandler}>
-              Add/Close Form
-            </button>
-          </form>
+  if (showMe === true) {
+    return (
+      <div>
+        <h3>Work Experience</h3>
+        <div className="schoolGrid">
+          <h4>Employer</h4>
+          <h4>From</h4>
+          <h4>To</h4>
+          <h4>Duties</h4>
+          {work.map((item) =>
+            item.map((inner) => {
+              return <div onClick={deleteHandler}>{inner}</div>;
+            })
+          )}
         </div>
-      );
-    } else {
-      if(this.props.edit){
-      return (
-        <div className='other'>
-          <h3>Work Experience</h3>
-          <div className="schoolGrid">
-            <h4>Employer</h4>
-            <h4>From</h4>
-            <h4>To</h4>
-            <h4>Duties</h4>
-            {this.state.work.map((item) =>
-              item.map((inner) => {
-                return <div>{inner}</div>;
-              })
-            )}
-            <button className="editButton" onClick={this.handleEdit}>
-              Edit
-            </button>
-          </div>
-        </div>
-      );
-            } else {
-              return (
-                <div className='other'>
-                  <h3>Work Experience</h3>
-                  <div className="schoolGrid">
-                    <h4>Employer</h4>
-                    <h4>From</h4>
-                    <h4>To</h4>
-                    <h4>Duties</h4>
-                    {this.state.work.map((item) =>
-                      item.map((inner) => {
-                        return <div>{inner}</div>;
-                      })
-                    )}
+        <form className="workForm">
+          <label>Employer Name :</label>
+          <input type="text" onChange={nameAdd} />
+          <label>From date :</label>
+          <input type="text" onChange={fromAdd} />
 
-                  </div>
-                </div>
-              );
-            }
-    }
+          <label>To date :</label>
+          <input type="text" onChange={toAdd} />
+          <label>Duties :</label>
+          <input type="text" onChange={dutyAdd} />
+          <p>Click the name of an Employer to remove that line</p>
+          <button type="submit" class="submit" onClick={submitHandler}>
+            Add/Close Form
+          </button>
+        </form>
+      </div>
+    );
+  } else {
+    return (
+      <div className="other">
+        <h3>Work Experience</h3>
+        <div className="schoolGrid">
+          <h4>Employer</h4>
+          <h4>From</h4>
+          <h4>To</h4>
+          <h4>Duties</h4>
+          {work.map((item) =>
+            item.map((inner) => {
+              return <div>{inner}</div>;
+            })
+          )}
+          <button
+            className="editButton"
+            onClick={handleEdit}
+            style={{ display: edit }}
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    );
   }
-}
+};
 
 export default Work;

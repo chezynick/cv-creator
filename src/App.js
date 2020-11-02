@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 //import components
 
@@ -8,41 +8,39 @@ import Other from "./other";
 import SideBar from "./sideBar";
 import General from "./General";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      editButtonView: true,
-    };
-    this.clickHandler = this.clickHandler.bind(this);
-  }
-  clickHandler() {
-    this.setState(prevState => ({
-      editButtonView: !prevState.editButtonView
-    }));
+const App = () => {
+
+   const [display, setDisplay] = useState('')
+ 
+  const clickHandler = () => {
+    if(display === ''){
+      setDisplay('none');
+    }else{
+      setDisplay('');
+    }
+    }
   
-  }
-  render() {
+  
     return (
       <div className="App">
         <div className="sideBar">
-          <SideBar />
+          <SideBar edit={display}/>
         </div>
         <div className="headerBar">
-          <General edit={this.state.editButtonView} />
+          <General edit={display} />
         </div>
 
         <div className="container">
-          <Work edit={this.state.editButtonView} />
+          <Work edit={display} />
 
-          <Education edit={this.state.editButtonView} />
+          <Education edit={display} />
 
-          <Other edit={this.state.editButtonView} />
+          <Other edit={display} />
 
-          <div onClick={this.clickHandler}>Toggle Edit Buttons</div>
+          <div onClick={clickHandler}>Toggle Edit Buttons</div>
         </div>
       </div>
     );
   }
-}
+
 export default App;

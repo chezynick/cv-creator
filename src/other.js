@@ -1,114 +1,86 @@
-import React from "react";
+import React,{useState} from "react";
 
-class Other extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      hobbieEdit: ["Cycling, photography, gastronomy and wine making"],
-      skillsEdit: ["can make a box out of Origami"],
-      achieveEdit: ["climbed Everest (in Zwift)"],
-      hobbies: ["Cycling, photography, gastronomy and wine makingl"],
-      skills: ["can make a box out of Origami"],
-      achievements: ["climbed Everest (in Zwift)"],
-      showMe: false,
-    };
-    this.handleEdit = this.handleEdit.bind(this);
-    this.hobbieChange = this.hobbieChange.bind(this);
-    this.skillChange = this.skillChange.bind(this);
-    this.achieveChange = this.achieveChange.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
-  }
+const Other = ({edit}) => {
+
+     const[hobbies, setHobbie]=useState ("Cycling, photography, gastronomy and wine making")
+     const [skills, setSkill] =useState("can make a box out of Origami")
+     const [achieve, setAchieve]= useState("climbed Everest (in Zwift)")
+      const [showMe,setChange] =useState(false);
+
   //edit button handler to open the form
-  handleEdit(e) {
+  const handleEdit=(e) =>{
     e.preventDefault();
-    this.setState({ showMe: true });
+    setChange(true );
   }
   //submit button handler to commit changes made
-  submitHandler(e) {
+  const submitHandler=(e) =>{
     e.preventDefault();
-    this.setState({ showMe: false });
-    this.setState((state) => {
-      const hobbies = [state.hobbieEdit];
-      const skills = [state.skillsEdit];
-      const achievements = [state.achieveEdit];
-      return {
-        achievements,
-        skills,
-        hobbies,
-      };
-    });
+    setChange(false);
+    setHobbie(setHobbie);
+    setSkill(setSkill);
+    setAchieve(setAchieve);
   }
   //text area functions to collect edited data
-  hobbieChange(e) {
-    this.setState({ hobbieEdit: e.target.value });
+  const hobbieChange = (e) =>{
+    setHobbie(e.target.value );
   }
-  skillChange(e) {
-    this.setState({ skillsEdit: e.target.value });
+  const skillChange = (e) =>{
+    setSkill(e.target.value );
   }
-  achieveChange(e) {
-    this.setState({ achieveEdit: e.target.value });
+  const achieveChange = (e) => {
+    setAchieve(e.target.value );
   }
-  render() {
-    if (this.state.showMe) {
+  
+    if (showMe) {
       return (
         <div className="other">
           <h3>Other...</h3>
-          <div> Hobbies: {this.state.hobbies}</div>
-          <div> Skilz: {this.state.skills}</div>
-          <div> Achievements: {this.state.achievements}</div>
+          <div> Hobbies: {hobbies}</div>
+          <div> Skilz: {skills}</div>
+          <div> Achievements: {achieve}</div>
 
           <form className="workForm">
             <label value="Hobbies:">Hobbies:</label>
             <input
               type="text"
-              Value={this.state.hobbies}
-              onChange={this.hobbieChange}
+              Value={hobbies}
+              onChange={hobbieChange}
             />
             <label value="skills:">Skills:</label>
             <input
               type="text"
-              Value={this.state.skills}
-              onChange={this.skillChange}
+              Value={skills}
+              onChange={skillChange}
             />
             <label value="Achievements:">Achievements:</label>
             <input
               type="text"
-              Value={this.state.achievements}
-              onChange={this.achieveChange}
+              Value={achieve}
+              onChange={achieveChange}
             />
             <div></div>
-            <button type="submit" class="submit" onClick={this.submitHandler}>
+            <button type="submit" class="submit" onClick={submitHandler}>
               Make Changes
             </button>
           </form>
         </div>
       );
     } else {
-      if (this.props.edit) {
+    
         
         return (
           <div className="other">
             <h3>Other...</h3>
-            <div> Hobbies: {this.state.hobbies}</div>
-            <button className="editButton" onClick={this.handleEdit}>
+            <div> Hobbies: {hobbies}</div>
+            <button className="editButton" style={{display:edit}} onClick={handleEdit}>
               Edit
             </button>
-            <div> Skilz: {this.state.skills}</div>
-            <div> Achievements: {this.state.achievements}</div>
+            <div> Skilz: {skills}</div>
+            <div> Achievements: {achieve}</div>
           </div>
         );
-      } else {
-        return (
-          <div className="other">
-            <h3>Other...</h3>
-            <div> Hobbies: {this.state.hobbies}</div>
-
-            <div> Skilz: {this.state.skills}</div>
-            <div> Achievements: {this.state.achievements}</div>
-          </div>
-        );
-      }
+    
     }
   }
-}
+
 export default Other;
